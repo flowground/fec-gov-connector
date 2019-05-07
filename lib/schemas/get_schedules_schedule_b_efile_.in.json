@@ -1,0 +1,95 @@
+{
+    "type": "object",
+    "properties": {
+        "disbursement_description": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "recipient_city": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-disbursement_date"
+        },
+        "max_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "min_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "min_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "max_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "recipient_state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

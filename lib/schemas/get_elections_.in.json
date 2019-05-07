@@ -1,0 +1,69 @@
+{
+    "type": "object",
+    "properties": {
+        "office": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "house",
+                "senate",
+                "president"
+            ]
+        },
+        "district": {
+            "required": false,
+            "type": "string"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "cycle": {
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "state": {
+            "required": false,
+            "type": "string"
+        },
+        "election_full": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-total_receipts"
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

@@ -1,0 +1,130 @@
+{
+    "type": "object",
+    "properties": {
+        "audit_case_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "q": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "audit_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "min_election_cycle": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "cycle": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "committee_designation": {
+            "required": false,
+            "type": "string"
+        },
+        "committee_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "max_election_cycle": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "candidate_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "primary_category_id": {
+            "required": false,
+            "type": "string",
+            "default": "all"
+        },
+        "sub_category_id": {
+            "required": false,
+            "type": "string",
+            "default": "all"
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [
+                "-cycle",
+                "committee_name"
+            ]
+        },
+        "qq": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

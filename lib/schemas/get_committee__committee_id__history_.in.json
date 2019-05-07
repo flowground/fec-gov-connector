@@ -1,0 +1,51 @@
+{
+    "type": "object",
+    "properties": {
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-cycle"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "election_full": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "committee_id": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

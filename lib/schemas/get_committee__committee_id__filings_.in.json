@@ -1,0 +1,197 @@
+{
+    "type": "object",
+    "properties": {
+        "document_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "party": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "form_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "amendment_indicator": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "N",
+                    "A",
+                    "T",
+                    "C",
+                    "M",
+                    "S"
+                ],
+                "type": "string"
+            }
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "cycle": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "report_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "most_recent": {
+            "required": false,
+            "type": "boolean"
+        },
+        "committee_type": {
+            "required": false,
+            "type": "string"
+        },
+        "beginning_image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "filer_type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "e-file",
+                "paper"
+            ]
+        },
+        "file_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "primary_general_indicator": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "office": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "H",
+                    "S",
+                    "P"
+                ],
+                "type": "string"
+            }
+        },
+        "district": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "is_amended": {
+            "required": false,
+            "type": "boolean"
+        },
+        "request_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [
+                "-receipt_date"
+            ]
+        },
+        "report_year": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "max_receipt_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "min_receipt_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "committee_id": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

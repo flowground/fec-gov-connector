@@ -1,0 +1,121 @@
+{
+    "type": "object",
+    "properties": {
+        "contributor_name": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "contributor_state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "line_number": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "max_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "contributor_occupation": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-contribution_receipt_date"
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "max_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "contributor_employer": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "contributor_city": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "max_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

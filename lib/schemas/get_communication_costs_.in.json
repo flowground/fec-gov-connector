@@ -1,0 +1,103 @@
+{
+    "type": "object",
+    "properties": {
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "min_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "line_number": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "max_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "candidate_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "support_oppose_indicator": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "S",
+                    "O"
+                ],
+                "type": "string"
+            }
+        },
+        "image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "max_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "min_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "max_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

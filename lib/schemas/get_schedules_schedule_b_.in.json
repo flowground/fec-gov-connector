@@ -1,0 +1,164 @@
+{
+    "type": "object",
+    "properties": {
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "disbursement_purpose_category": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "spender_committee_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "C",
+                    "D",
+                    "E",
+                    "H",
+                    "I",
+                    "N",
+                    "O",
+                    "P",
+                    "Q",
+                    "S",
+                    "U",
+                    "V",
+                    "W",
+                    "X",
+                    "Y",
+                    "Z"
+                ],
+                "type": "string"
+            }
+        },
+        "recipient_name": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "line_number": {
+            "required": false,
+            "type": "string"
+        },
+        "recipient_state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "last_disbursement_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "max_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "recipient_committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "disbursement_description": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "recipient_city": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "last_disbursement_amount": {
+            "required": false,
+            "type": "number",
+            "format": "float"
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-disbursement_date"
+        },
+        "max_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "last_index": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "min_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "max_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "two_year_transaction_period": {
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "default": 2018
+        }
+    }
+}

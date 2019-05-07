@@ -1,0 +1,154 @@
+{
+    "type": "object",
+    "properties": {
+        "min_debts_owed_by_committee": {
+            "required": false,
+            "type": "string"
+        },
+        "federal_funds_flag": {
+            "required": false,
+            "type": "boolean"
+        },
+        "party": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "q": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_receipts": {
+            "required": false,
+            "type": "string"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "cycle": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "election_full": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "has_raised_funds": {
+            "required": false,
+            "type": "boolean"
+        },
+        "min_cash_on_hand_end_period": {
+            "required": false,
+            "type": "string"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "candidate_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "office": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "H",
+                    "S",
+                    "P"
+                ],
+                "type": "string"
+            }
+        },
+        "district": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "election_year": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "max_cash_on_hand_end_period": {
+            "required": false,
+            "type": "string"
+        },
+        "max_debts_owed_by_committee": {
+            "required": false,
+            "type": "string"
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "max_receipts": {
+            "required": false,
+            "type": "string"
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "is_active_candidate": {
+            "required": false,
+            "type": "boolean"
+        },
+        "max_disbursements": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "min_disbursements": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

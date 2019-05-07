@@ -1,0 +1,185 @@
+{
+    "type": "object",
+    "properties": {
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "cycle": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "filing_form": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "line_number": {
+            "required": false,
+            "type": "string"
+        },
+        "payee_name": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "candidate_office_state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "max_image_number": {
+            "required": false,
+            "type": "string"
+        },
+        "candidate_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "candidate_office_district": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "last_expenditure_amount": {
+            "required": false,
+            "type": "number",
+            "format": "float"
+        },
+        "support_oppose_indicator": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "S",
+                    "O"
+                ],
+                "type": "string"
+            }
+        },
+        "candidate_office": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "H",
+                    "S",
+                    "P"
+                ],
+                "type": "string"
+            }
+        },
+        "last_expenditure_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-expenditure_date"
+        },
+        "max_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "candidate_party": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "last_index": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "min_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "max_amount": {
+            "required": false,
+            "type": "string"
+        },
+        "last_support_oppose_indicator": {
+            "required": false,
+            "type": "string"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "is_notice": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "boolean"
+            }
+        },
+        "last_office_total_ytd": {
+            "required": false,
+            "type": "number",
+            "format": "float"
+        }
+    }
+}

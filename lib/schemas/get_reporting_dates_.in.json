@@ -1,0 +1,87 @@
+{
+    "type": "object",
+    "properties": {
+        "max_create_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "min_update_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "min_due_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "report_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "max_update_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-due_date"
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "max_due_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "report_year": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "min_create_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

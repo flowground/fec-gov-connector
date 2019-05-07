@@ -1,0 +1,108 @@
+{
+    "type": "object",
+    "properties": {
+        "max_expenditure_amount": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_expenditure_amount": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "payee_name": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "candidate_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "support_oppose_indicator": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "S",
+                    "O"
+                ],
+                "type": "string"
+            }
+        },
+        "image_number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "max_expenditure_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "candidate_name": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "-expenditure_date"
+        },
+        "min_expenditure_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

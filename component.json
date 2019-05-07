@@ -1,0 +1,1551 @@
+{
+    "title": "OpenFEC",
+    "description": "This API allows you to explore the way candidates and committees fund their campaigns. \n\n The FEC API is a RESTful web service supporting full-text and field-specific searches on FEC data. [Bulk downloads](https://www.fec.gov/data/advanced/?tab=bulk-data) are available on the current site. Information is tied to the underlying forms by file ID and image ID. Data is updated nightly. \n\n There is a lot of data, but a good place to start is to use search to find interesting candidates and committees. Then, you can use their IDs to find report or line item details with the other endpoints. If you are interested in individual donors, check out contributor information in schedule_a. \n\n Get an [API key here](https://api.data.gov/signup/). That will enable you to place up to 1,000 calls an hour. Each call is limited to 100 results per page. You can email questions, comments or a request to get a key for 120 calls per minute to [APIinfo@fec.gov](mailto:apiinfo@fec.gov). You can also ask questions and discuss the data in the [FEC data Google Group](https://groups.google.com/forum/#!forum/fec-data). API changes will also be added to this group in advance of the change. \n\n \n\n The model definitions and schema are available at [/swagger](/swagger/). This is useful for making wrappers and exploring the data. \n\n A few restrictions limit the way you can use FEC data. For example, you can't use contributor lists for commercial purposes or to solicit donations. [Learn more here](https://www.fec.gov/updates/sale-or-use-contributor-information/). \n\n [View our source code](https://github.com/fecgov/openFEC). We welcome issues and pull requests!",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/fec.gov/1.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.open.fec.gov/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "apiKey": {
+                "label": "api_key (apiKey)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_audit_case_": {
+            "main": "./lib/actions/get_audit_case_.js",
+            "title": "\nThis endpoint contains Final Audit Reports approved by the Commission since inception.\nThe search can be based on information about the audited committee (Name, FEC ID Number, Type, \nElection Cycle) or the issues covered in the report.\n",
+            "description": "\nThis endpoint contains Final Audit Reports approved by the Commission since inception.\nThe search can be based on information about the audited committee (Name, FEC ID Number, Type, \nElection Cycle) or the issues covered in the report.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_audit_case_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_audit_category_": {
+            "main": "./lib/actions/get_audit_category_.js",
+            "title": "\nThis lists the options for the categories and subcategories available in the /audit-search/ endpoint.\n",
+            "description": "\nThis lists the options for the categories and subcategories available in the /audit-search/ endpoint.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_audit_category_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_audit_primary_category_": {
+            "main": "./lib/actions/get_audit_primary_category_.js",
+            "title": "\nThis lists the options for the primary categories available in the /audit-search/ endpoint.\n",
+            "description": "\nThis lists the options for the primary categories available in the /audit-search/ endpoint.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_audit_primary_category_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_calendar_dates_": {
+            "main": "./lib/actions/get_calendar_dates_.js",
+            "title": "\nCombines the election and reporting dates with Commission meetings, conferences, outreach, Advisory Opinions, rules, litigation dates and other\nevents into one calendar.\n\nState and report type filtering is no longer available.\n",
+            "description": "\nCombines the election and reporting dates with Commission meetings, conferences, outreach, Advisory Opinions, rules, litigation dates and other\nevents into one calendar.\n\nState and report type filtering is no longer available.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_calendar_dates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_calendar_dates_export_": {
+            "main": "./lib/actions/get_calendar_dates_export_.js",
+            "title": "\nReturns CSV or ICS for downloading directly into calendar applications like Google, Outlook or other applications.\n\nCombines the election and reporting dates with Commission meetings, conferences, outreach, Advisory Opinions, rules, litigation dates and other\nevents into one calendar.\n\nState filtering now applies to elections, reports and reporting periods.\n\nPresidential pre-primary report due dates are not shown on even years.\nFilers generally opt to file monthly rather than submit over 50 pre-primary election\nreports. All reporting deadlines are available at /reporting-dates/ for reference.\n\nThis is [the sql function](https://github.com/fecgov/openFEC/blob/develop/data/migrations/V40__omnibus_dates.sql)\nthat creates the calendar.\n\n",
+            "description": "\nReturns CSV or ICS for downloading directly into calendar applications like Google, Outlook or other applications.\n\nCombines the election and reporting dates with Commission meetings, conferences, outreach, Advisory Opinions, rules, litigation dates and other\nevents into one calendar.\n\nState filtering now applies to elections, reports and reporting periods.\n\nPresidential pre-primary report due dates are not shown on even years.\nFilers generally opt to file monthly rather than submit over 50 pre-primary election\nreports. All reporting deadlines are available at /reporting-dates/ for reference.\n\nThis is [the sql function](https://github.com/fecgov/openFEC/blob/develop/data/migrations/V40__omnibus_dates.sql)\nthat creates the calendar.\n\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_calendar_dates_export_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__": {
+            "main": "./lib/actions/get_candidate__candidate_id__.js",
+            "title": "\nThis endpoint is useful for finding detailed information about a particular candidate. Use the\n`candidate_id` to find the most recent information about that candidate.\n\n",
+            "description": "\nThis endpoint is useful for finding detailed information about a particular candidate. Use the\n`candidate_id` to find the most recent information about that candidate.\n\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__committees_": {
+            "main": "./lib/actions/get_candidate__candidate_id__committees_.js",
+            "title": "\nThis endpoint is useful for finding detailed information about a particular committee or\nfiler. Use the `committee_id` to find the most recent information about the committee.\n",
+            "description": "\nThis endpoint is useful for finding detailed information about a particular committee or\nfiler. Use the `committee_id` to find the most recent information about the committee.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__committees_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__committees_history_": {
+            "main": "./lib/actions/get_candidate__candidate_id__committees_history_.js",
+            "title": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "description": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__committees_history_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__committees_history__cycle__": {
+            "main": "./lib/actions/get_candidate__candidate_id__committees_history__cycle__.js",
+            "title": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "description": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__committees_history__cycle__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__filings_": {
+            "main": "./lib/actions/get_candidate__candidate_id__filings_.js",
+            "title": "\nAll official records and reports filed by or delivered to the FEC.\n\nNote: because the filings data includes many records, counts for large\nresult sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nAll official records and reports filed by or delivered to the FEC.\n\nNote: because the filings data includes many records, counts for large\nresult sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__filings_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__history_": {
+            "main": "./lib/actions/get_candidate__candidate_id__history_.js",
+            "title": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "description": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__history_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__history__cycle__": {
+            "main": "./lib/actions/get_candidate__candidate_id__history__cycle__.js",
+            "title": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "description": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__history__cycle__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidate__candidate_id__totals_": {
+            "main": "./lib/actions/get_candidate__candidate_id__totals_.js",
+            "title": "\nThis endpoint provides information about a committee's Form 3, Form 3X, or Form 3P financial reports,\nwhich are aggregated by two-year period. We refer to two-year periods as a `cycle`.\n\nThe cycle is named after the even-numbered year and includes the year before it. To see\ntotals from 2013 and 2014, you would use 2014. In odd-numbered years, the current cycle\nis the next year -- for example, in 2015, the current cycle is 2016.\n\nFor presidential and Senate candidates, multiple two-year cycles exist between elections.\n",
+            "description": "\nThis endpoint provides information about a committee's Form 3, Form 3X, or Form 3P financial reports,\nwhich are aggregated by two-year period. We refer to two-year periods as a `cycle`.\n\nThe cycle is named after the even-numbered year and includes the year before it. To see\ntotals from 2013 and 2014, you would use 2014. In odd-numbered years, the current cycle\nis the next year -- for example, in 2015, the current cycle is 2016.\n\nFor presidential and Senate candidates, multiple two-year cycles exist between elections.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidate__candidate_id__totals_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidates_": {
+            "main": "./lib/actions/get_candidates_.js",
+            "title": "\nFetch basic information about candidates, and use parameters to filter results to the\ncandidates you're looking for.\n\nEach result reflects a unique FEC candidate ID. That ID is particular to the candidate for a\nparticular office sought. If a candidate runs for the same office multiple times, the ID\nstays the same. If the same person runs for another office -- for example, a House\ncandidate runs for a Senate office -- that candidate will get a unique ID for each office.\n",
+            "description": "\nFetch basic information about candidates, and use parameters to filter results to the\ncandidates you're looking for.\n\nEach result reflects a unique FEC candidate ID. That ID is particular to the candidate for a\nparticular office sought. If a candidate runs for the same office multiple times, the ID\nstays the same. If the same person runs for another office -- for example, a House\ncandidate runs for a Senate office -- that candidate will get a unique ID for each office.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidates_search_": {
+            "main": "./lib/actions/get_candidates_search_.js",
+            "title": "\nFetch basic information about candidates and their principal committees.\n\nEach result reflects a unique FEC candidate ID. That ID is assigned to the candidate for a\nparticular office sought. If a candidate runs for the same office over time, that ID\nstays the same. If the same person runs for multiple offices -- for example, a House\ncandidate runs for a Senate office -- that candidate will get a unique ID for each office.\n\nThe candidate endpoints primarily use data from FEC registration\n[Form 1](http://www.fec.gov/pdf/forms/fecfrm1.pdf), for candidate information, and\n[Form 2](http://www.fec.gov/pdf/forms/fecfrm2.pdf), for committees information, with additional information\nto provide context.\n",
+            "description": "\nFetch basic information about candidates and their principal committees.\n\nEach result reflects a unique FEC candidate ID. That ID is assigned to the candidate for a\nparticular office sought. If a candidate runs for the same office over time, that ID\nstays the same. If the same person runs for multiple offices -- for example, a House\ncandidate runs for a Senate office -- that candidate will get a unique ID for each office.\n\nThe candidate endpoints primarily use data from FEC registration\n[Form 1](http://www.fec.gov/pdf/forms/fecfrm1.pdf), for candidate information, and\n[Form 2](http://www.fec.gov/pdf/forms/fecfrm2.pdf), for committees information, with additional information\nto provide context.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidates_search_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidates_totals_": {
+            "main": "./lib/actions/get_candidates_totals_.js",
+            "title": "\nAggregated candidate receipts and disbursements grouped by cycle.\n",
+            "description": "\nAggregated candidate receipts and disbursements grouped by cycle.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidates_totals_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_candidates_totals_by_office_": {
+            "main": "./lib/actions/get_candidates_totals_by_office_.js",
+            "title": " Aggregated candidate receipts and disbursements grouped by office by cycle.\n",
+            "description": " Aggregated candidate receipts and disbursements grouped by office by cycle.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_candidates_totals_by_office_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__": {
+            "main": "./lib/actions/get_committee__committee_id__.js",
+            "title": "\nThis endpoint is useful for finding detailed information about a particular committee or\nfiler. Use the `committee_id` to find the most recent information about the committee.\n",
+            "description": "\nThis endpoint is useful for finding detailed information about a particular committee or\nfiler. Use the `committee_id` to find the most recent information about the committee.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__candidates_": {
+            "main": "./lib/actions/get_committee__committee_id__candidates_.js",
+            "title": "\nThis endpoint is useful for finding detailed information about a particular candidate. Use the\n`candidate_id` to find the most recent information about that candidate.\n\n",
+            "description": "\nThis endpoint is useful for finding detailed information about a particular candidate. Use the\n`candidate_id` to find the most recent information about that candidate.\n\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__candidates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__candidates_history_": {
+            "main": "./lib/actions/get_committee__committee_id__candidates_history_.js",
+            "title": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "description": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__candidates_history_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__candidates_history__cycle__": {
+            "main": "./lib/actions/get_committee__committee_id__candidates_history__cycle__.js",
+            "title": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "description": "\nFind out a candidate's characteristics over time. This is particularly useful if the\ncandidate runs for the same office in different districts or you want to know more about a candidate's\nprevious races.\n\nThis information is organized by `candidate_id`, so it won't help you find a candidate\nwho ran for different offices over time; candidates get a new ID for each office.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__candidates_history__cycle__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__communication_costs_by_candidate_": {
+            "main": "./lib/actions/get_committee__committee_id__communication_costs_by_candidate_.js",
+            "title": "Communication cost aggregated by candidate ID and committee ID.",
+            "description": "Communication cost aggregated by candidate ID and committee ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__communication_costs_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__electioneering_by_candidate_": {
+            "main": "./lib/actions/get_committee__committee_id__electioneering_by_candidate_.js",
+            "title": "Electioneering costs aggregated by candidate.",
+            "description": "Electioneering costs aggregated by candidate.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__electioneering_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__filings_": {
+            "main": "./lib/actions/get_committee__committee_id__filings_.js",
+            "title": "\nAll official records and reports filed by or delivered to the FEC.\n\nNote: because the filings data includes many records, counts for large\nresult sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nAll official records and reports filed by or delivered to the FEC.\n\nNote: because the filings data includes many records, counts for large\nresult sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__filings_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__history_": {
+            "main": "./lib/actions/get_committee__committee_id__history_.js",
+            "title": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "description": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__history_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__history__cycle__": {
+            "main": "./lib/actions/get_committee__committee_id__history__cycle__.js",
+            "title": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "description": "\nExplore a filer's characteristics over time. This can be particularly useful if the\ncommittees change treasurers, designation, or `committee_type`.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__history__cycle__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__reports_": {
+            "main": "./lib/actions/get_committee__committee_id__reports_.js",
+            "title": "\nEach report represents the summary information from FEC Form 3, Form 3X and Form 3P.\nThese reports have key statistics that illuminate the financial status of a given committee.\nThings like cash on hand, debts owed by committee, total receipts, and total disbursements\nare especially helpful for understanding a committee's financial dealings.\n\nBy default, this endpoint includes both amended and final versions of each report. To restrict\nto only the final versions of each report, use `is_amended=false`; to view only reports that\nhave been amended, use `is_amended=true`.\n\nSeveral different reporting structures exist, depending on the type of organization that\nsubmits financial information. To see an example of these reporting requirements,\nlook at the summary and detailed summary pages of FEC Form 3, Form 3X, and Form 3P.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nEach report represents the summary information from FEC Form 3, Form 3X and Form 3P.\nThese reports have key statistics that illuminate the financial status of a given committee.\nThings like cash on hand, debts owed by committee, total receipts, and total disbursements\nare especially helpful for understanding a committee's financial dealings.\n\nBy default, this endpoint includes both amended and final versions of each report. To restrict\nto only the final versions of each report, use `is_amended=false`; to view only reports that\nhave been amended, use `is_amended=true`.\n\nSeveral different reporting structures exist, depending on the type of organization that\nsubmits financial information. To see an example of these reporting requirements,\nlook at the summary and detailed summary pages of FEC Form 3, Form 3X, and Form 3P.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__reports_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_a_by_employer_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_a_by_employer_.js",
+            "title": "Schedule A receipts aggregated by contributor employer name. To avoid double counting, memoed items are not included.",
+            "description": "Schedule A receipts aggregated by contributor employer name. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_a_by_employer_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_a_by_occupation_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_a_by_occupation_.js",
+            "title": "Schedule A receipts aggregated by contributor occupation. To avoid double counting, memoed items are not included.",
+            "description": "Schedule A receipts aggregated by contributor occupation. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_a_by_occupation_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_a_by_size_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_a_by_size_.js",
+            "title": "\nThis endpoint aggregates Schedule A donations based on size:\n```\n - $200 and under\n - $200.01 - $499.99\n - $500 - $999.99\n - $1000 - $1999.99\n - $2000 +\n```\nIn cases where the donations are $200 or less, the results include small donations\nthat are reported on Schedule A, but filers are not required to itemize those small\ndonations, so we also add unitemized contributions. Unitemized contributions come\nfrom the summary section of the forms. It represents the total money brought in from\ndonors that are not reported on Schedule A and have given $200 or less.\n",
+            "description": "\nThis endpoint aggregates Schedule A donations based on size:\n```\n - $200 and under\n - $200.01 - $499.99\n - $500 - $999.99\n - $1000 - $1999.99\n - $2000 +\n```\nIn cases where the donations are $200 or less, the results include small donations\nthat are reported on Schedule A, but filers are not required to itemize those small\ndonations, so we also add unitemized contributions. Unitemized contributions come\nfrom the summary section of the forms. It represents the total money brought in from\ndonors that are not reported on Schedule A and have given $200 or less.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_a_by_size_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_a_by_state_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_a_by_state_.js",
+            "title": "\nSchedule A individual receipts aggregated by contributor state.\nThis is an aggregate of only individual contributions. To avoid double counting,\nmemoed items are not included. Transactions $200 and under do not have to be\nitemized, if those contributions are not itemized, they will not be included in the\nstate totals.\n",
+            "description": "\nSchedule A individual receipts aggregated by contributor state.\nThis is an aggregate of only individual contributions. To avoid double counting,\nmemoed items are not included. Transactions $200 and under do not have to be\nitemized, if those contributions are not itemized, they will not be included in the\nstate totals.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_a_by_state_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_a_by_zip_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_a_by_zip_.js",
+            "title": "Schedule A receipts aggregated by contributor zip code. To avoid double counting, memoed items are not included.",
+            "description": "Schedule A receipts aggregated by contributor zip code. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_a_by_zip_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_b_by_purpose_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_b_by_purpose_.js",
+            "title": "\nSchedule B disbursements aggregated by disbursement purpose category. To avoid double counting,\nmemoed items are not included.\nPurpose is a combination of transaction codes, category codes and disbursement description.\nSee the `disbursement_purpose` sql function within the migrations for more details.\n",
+            "description": "\nSchedule B disbursements aggregated by disbursement purpose category. To avoid double counting,\nmemoed items are not included.\nPurpose is a combination of transaction codes, category codes and disbursement description.\nSee the `disbursement_purpose` sql function within the migrations for more details.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_b_by_purpose_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_b_by_recipient_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_b_by_recipient_.js",
+            "title": "\nSchedule B disbursements aggregated by recipient name. To avoid double counting,\nmemoed items are not included.\n",
+            "description": "\nSchedule B disbursements aggregated by recipient name. To avoid double counting,\nmemoed items are not included.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_b_by_recipient_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_b_by_recipient_id_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_b_by_recipient_id_.js",
+            "title": "\nSchedule B disbursements aggregated by recipient committee ID, if applicable.\nTo avoid double counting, memoed items are not included.\n",
+            "description": "\nSchedule B disbursements aggregated by recipient committee ID, if applicable.\nTo avoid double counting, memoed items are not included.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_b_by_recipient_id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__schedules_schedule_e_by_candidate_": {
+            "main": "./lib/actions/get_committee__committee_id__schedules_schedule_e_by_candidate_.js",
+            "title": "Schedule E receipts aggregated by recipient candidate. To avoid double counting, memoed items are not included.",
+            "description": "Schedule E receipts aggregated by recipient candidate. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__schedules_schedule_e_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committee__committee_id__totals_": {
+            "main": "./lib/actions/get_committee__committee_id__totals_.js",
+            "title": "\nThis endpoint provides information about a committee's Form 3, Form 3X, or Form 3P financial reports,\nwhich are aggregated by two-year period. We refer to two-year periods as a `cycle`.\n\nThe cycle is named after the even-numbered year and includes the year before it. To see\ntotals from 2013 and 2014, you would use 2014. In odd-numbered years, the current cycle\nis the next year -- for example, in 2015, the current cycle is 2016.\n\nFor presidential and Senate candidates, multiple two-year cycles exist between elections.\n",
+            "description": "\nThis endpoint provides information about a committee's Form 3, Form 3X, or Form 3P financial reports,\nwhich are aggregated by two-year period. We refer to two-year periods as a `cycle`.\n\nThe cycle is named after the even-numbered year and includes the year before it. To see\ntotals from 2013 and 2014, you would use 2014. In odd-numbered years, the current cycle\nis the next year -- for example, in 2015, the current cycle is 2016.\n\nFor presidential and Senate candidates, multiple two-year cycles exist between elections.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committee__committee_id__totals_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_committees_": {
+            "main": "./lib/actions/get_committees_.js",
+            "title": "\nFetch basic information about committees and filers. Use parameters to filter for\nparticular characteristics.\n\n",
+            "description": "\nFetch basic information about committees and filers. Use parameters to filter for\nparticular characteristics.\n\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_committees_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_communication_costs_": {
+            "main": "./lib/actions/get_communication_costs_.js",
+            "title": "\n52 U.S.C. 30118 allows \"communications by a corporation to its stockholders and\nexecutive or administrative personnel and their families or by a labor organization\nto its members and their families on any subject,\" including the express advocacy of\nthe election or defeat of any Federal candidate.  The costs of such communications\nmust be reported to the Federal Election Commission under certain circumstances.\n",
+            "description": "\n52 U.S.C. 30118 allows \"communications by a corporation to its stockholders and\nexecutive or administrative personnel and their families or by a labor organization\nto its members and their families on any subject,\" including the express advocacy of\nthe election or defeat of any Federal candidate.  The costs of such communications\nmust be reported to the Federal Election Commission under certain circumstances.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_communication_costs_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_communication_costs_by_candidate_": {
+            "main": "./lib/actions/get_communication_costs_by_candidate_.js",
+            "title": "Communication cost aggregated by candidate ID and committee ID.",
+            "description": "Communication cost aggregated by candidate ID and committee ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_communication_costs_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_efile_filings_": {
+            "main": "./lib/actions/get_efile_filings_.js",
+            "title": "Basic information about electronic files coming into the FEC, posted as they are received.",
+            "description": "Basic information about electronic files coming into the FEC, posted as they are received.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_efile_filings_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_efile_reports_house_senate_": {
+            "main": "./lib/actions/get_efile_reports_house_senate_.js",
+            "title": "\nKey financial data reported periodically by committees as they are reported. This feed includes summary\ninformation from the the House F3 reports, the presidential F3p reports and the PAC and party\nF3x reports.\n\nGenerally, committees file reports on a quarterly or monthly basis, but\nsome must also submit a report 12 days before primary elections. Therefore, during the primary\nseason, the period covered by this file may be different for different committees. These totals\nalso incorporate any changes made by committees, if any report covering the period is amended.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nKey financial data reported periodically by committees as they are reported. This feed includes summary\ninformation from the the House F3 reports, the presidential F3p reports and the PAC and party\nF3x reports.\n\nGenerally, committees file reports on a quarterly or monthly basis, but\nsome must also submit a report 12 days before primary elections. Therefore, during the primary\nseason, the period covered by this file may be different for different committees. These totals\nalso incorporate any changes made by committees, if any report covering the period is amended.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_efile_reports_house_senate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_efile_reports_pac_party_": {
+            "main": "./lib/actions/get_efile_reports_pac_party_.js",
+            "title": "\nKey financial data reported periodically by committees as they are reported. This feed includes summary\ninformation from the the House F3 reports, the presidential F3p reports and the PAC and party\nF3x reports.\n\nGenerally, committees file reports on a quarterly or monthly basis, but\nsome must also submit a report 12 days before primary elections. Therefore, during the primary\nseason, the period covered by this file may be different for different committees. These totals\nalso incorporate any changes made by committees, if any report covering the period is amended.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nKey financial data reported periodically by committees as they are reported. This feed includes summary\ninformation from the the House F3 reports, the presidential F3p reports and the PAC and party\nF3x reports.\n\nGenerally, committees file reports on a quarterly or monthly basis, but\nsome must also submit a report 12 days before primary elections. Therefore, during the primary\nseason, the period covered by this file may be different for different committees. These totals\nalso incorporate any changes made by committees, if any report covering the period is amended.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_efile_reports_pac_party_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_efile_reports_presidential_": {
+            "main": "./lib/actions/get_efile_reports_presidential_.js",
+            "title": "\nKey financial data reported periodically by committees as they are reported. This feed includes summary\ninformation from the the House F3 reports, the presidential F3p reports and the PAC and party\nF3x reports.\n\nGenerally, committees file reports on a quarterly or monthly basis, but\nsome must also submit a report 12 days before primary elections. Therefore, during the primary\nseason, the period covered by this file may be different for different committees. These totals\nalso incorporate any changes made by committees, if any report covering the period is amended.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nKey financial data reported periodically by committees as they are reported. This feed includes summary\ninformation from the the House F3 reports, the presidential F3p reports and the PAC and party\nF3x reports.\n\nGenerally, committees file reports on a quarterly or monthly basis, but\nsome must also submit a report 12 days before primary elections. Therefore, during the primary\nseason, the period covered by this file may be different for different committees. These totals\nalso incorporate any changes made by committees, if any report covering the period is amended.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_efile_reports_presidential_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_election_dates_": {
+            "main": "./lib/actions/get_election_dates_.js",
+            "title": "\nFEC election dates since 1995.\n",
+            "description": "\nFEC election dates since 1995.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_election_dates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_electioneering_": {
+            "main": "./lib/actions/get_electioneering_.js",
+            "title": "\nAn electioneering communication is any broadcast, cable or satellite communication that fulfills each of the following conditions:\n\n_The communication refers to a clearly identified federal candidate._\n\n_The communication is publicly distributed by a television station, radio station, cable television system or satellite system for a fee._\n\n_The communication is distributed within 60 days prior to a general election or 30 days prior to a primary election to federal office._\n",
+            "description": "\nAn electioneering communication is any broadcast, cable or satellite communication that fulfills each of the following conditions:\n\n_The communication refers to a clearly identified federal candidate._\n\n_The communication is publicly distributed by a television station, radio station, cable television system or satellite system for a fee._\n\n_The communication is distributed within 60 days prior to a general election or 30 days prior to a primary election to federal office._\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_electioneering_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_electioneering_by_candidate_": {
+            "main": "./lib/actions/get_electioneering_by_candidate_.js",
+            "title": "Electioneering costs aggregated by candidate.",
+            "description": "Electioneering costs aggregated by candidate.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_electioneering_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_elections_": {
+            "main": "./lib/actions/get_elections_.js",
+            "title": "\nLook at the top-level financial information for all candidates running for the same\noffice.\n\nChoose a 2-year cycle, and `house`, `senate` or `presidential`.\n\nIf you are looking for a Senate seat, you will need to select the state using a two-letter\nabbreviation.\n\nHouse races require state and a two-digit district number.\n\nSince this endpoint reflects financial information, it will only have candidates once they file\nfinancial reporting forms. Query the `/candidates` endpoint to see an up to date list of all the\ncandidates that filed to run for a particular seat.\n",
+            "description": "\nLook at the top-level financial information for all candidates running for the same\noffice.\n\nChoose a 2-year cycle, and `house`, `senate` or `presidential`.\n\nIf you are looking for a Senate seat, you will need to select the state using a two-letter\nabbreviation.\n\nHouse races require state and a two-digit district number.\n\nSince this endpoint reflects financial information, it will only have candidates once they file\nfinancial reporting forms. Query the `/candidates` endpoint to see an up to date list of all the\ncandidates that filed to run for a particular seat.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_elections_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_elections_search_": {
+            "main": "./lib/actions/get_elections_search_.js",
+            "title": "\nList elections by cycle, office, state, and district.\n",
+            "description": "\nList elections by cycle, office, state, and district.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_elections_search_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_elections_summary_": {
+            "main": "./lib/actions/get_elections_summary_.js",
+            "title": "\nList elections by cycle, office, state, and district.\n",
+            "description": "\nList elections by cycle, office, state, and district.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_elections_summary_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_filings_": {
+            "main": "./lib/actions/get_filings_.js",
+            "title": "\nAll official records and reports filed by or delivered to the FEC.\n\nNote: because the filings data includes many records, counts for large\nresult sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nAll official records and reports filed by or delivered to the FEC.\n\nNote: because the filings data includes many records, counts for large\nresult sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_filings_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_legal_search_": {
+            "main": "./lib/actions/get_legal_search_.js",
+            "title": "\nSearch legal documents by type, or across all document types using keywords, parameter values and ranges.\n",
+            "description": "\nSearch legal documents by type, or across all document types using keywords, parameter values and ranges.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_legal_search_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_names_audit_candidates_": {
+            "main": "./lib/actions/get_names_audit_candidates_.js",
+            "title": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "description": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_names_audit_candidates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_names_audit_committees_": {
+            "main": "./lib/actions/get_names_audit_committees_.js",
+            "title": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "description": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_names_audit_committees_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_names_candidates_": {
+            "main": "./lib/actions/get_names_candidates_.js",
+            "title": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "description": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_names_candidates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_names_committees_": {
+            "main": "./lib/actions/get_names_committees_.js",
+            "title": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "description": "\nSearch for candidates or committees by name. If you're looking for information on a\nparticular person or group, using a name to find the `candidate_id` or `committee_id` on\nthis endpoint can be a helpful first step.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_names_committees_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_operations_log_": {
+            "main": "./lib/actions/get_operations_log_.js",
+            "title": "\nThe Operations log contains details of each report loaded into the database. It is primarily\nused as status check to determine when all of the data processes, from initial entry through\nreview are complete.\n",
+            "description": "\nThe Operations log contains details of each report loaded into the database. It is primarily\nused as status check to determine when all of the data processes, from initial entry through\nreview are complete.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_operations_log_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_rad_analyst_": {
+            "main": "./lib/actions/get_rad_analyst_.js",
+            "title": "\nUse this endpoint to look up the RAD Analyst for a committee.\n\nThe mission of the Reports Analysis Division (RAD) is to ensure that\ncampaigns and political committees file timely and accurate reports that fully disclose\ntheir financial activities.  RAD is responsible for reviewing statements and financial\nreports filed by political committees participating in federal elections, providing\nassistance and guidance to the committees to properly file their reports, and for taking\nappropriate action to ensure compliance with the Federal Election Campaign Act (FECA).\n",
+            "description": "\nUse this endpoint to look up the RAD Analyst for a committee.\n\nThe mission of the Reports Analysis Division (RAD) is to ensure that\ncampaigns and political committees file timely and accurate reports that fully disclose\ntheir financial activities.  RAD is responsible for reviewing statements and financial\nreports filed by political committees participating in federal elections, providing\nassistance and guidance to the committees to properly file their reports, and for taking\nappropriate action to ensure compliance with the Federal Election Campaign Act (FECA).\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_rad_analyst_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_reporting_dates_": {
+            "main": "./lib/actions/get_reporting_dates_.js",
+            "title": "\nFEC election dates since 1995.\n",
+            "description": "\nFEC election dates since 1995.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_reporting_dates_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_reports__committee_type__": {
+            "main": "./lib/actions/get_reports__committee_type__.js",
+            "title": "\nEach report represents the summary information from FEC Form 3, Form 3X and Form 3P.\nThese reports have key statistics that illuminate the financial status of a given committee.\nThings like cash on hand, debts owed by committee, total receipts, and total disbursements\nare especially helpful for understanding a committee's financial dealings.\n\nBy default, this endpoint includes both amended and final versions of each report. To restrict\nto only the final versions of each report, use `is_amended=false`; to view only reports that\nhave been amended, use `is_amended=true`.\n\nSeveral different reporting structures exist, depending on the type of organization that\nsubmits financial information. To see an example of these reporting requirements,\nlook at the summary and detailed summary pages of FEC Form 3, Form 3X, and Form 3P.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nEach report represents the summary information from FEC Form 3, Form 3X and Form 3P.\nThese reports have key statistics that illuminate the financial status of a given committee.\nThings like cash on hand, debts owed by committee, total receipts, and total disbursements\nare especially helpful for understanding a committee's financial dealings.\n\nBy default, this endpoint includes both amended and final versions of each report. To restrict\nto only the final versions of each report, use `is_amended=false`; to view only reports that\nhave been amended, use `is_amended=true`.\n\nSeveral different reporting structures exist, depending on the type of organization that\nsubmits financial information. To see an example of these reporting requirements,\nlook at the summary and detailed summary pages of FEC Form 3, Form 3X, and Form 3P.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_reports__committee_type__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_": {
+            "main": "./lib/actions/get_schedules_schedule_a_.js",
+            "title": "\nSchedule A records describe itemized receipts reported by a committee. This is where\nyou can look for individual contributors. If you are interested in\nindividual donors, `/schedules/schedule_a` will be the endpoint you use.\n\nOnce a person gives more than a total of $200, the donations of that person must be\nreported by committees that file F3, F3X and F3P forms.\n\nContributions $200 and under are not required to be itemized, but you can find the total\namount of these small donations by looking up the \"unitemized\" field in the `/reports`\nor `/totals` endpoints.\n\nWhen comparing the totals from reports to line items. the totals will not match unless you\nonly look at items where `\"is_individual\":true` since the same transaction is in the data\nmultiple ways to explain the way it may move though different committees as an earmark.\nSee the `is_individual` sql function within the migrations for more details.\n\nFor the Schedule A aggregates, such as by_occupation and by_state, include only unique individual\ncontributions. See below for full methodology.\n\n__Methodology for determining unique, individual contributions__\n\nFor receipts over $200 use FEC code line_number to identify individuals.\n\nThe line numbers that specify individuals that are automatically included:\n\nLine number with description\n    - 10 Contribution to Independent Expenditure-Only Committees (Super PACs),\n         Political Committees with non-contribution accounts (Hybrid PACs)\n         and nonfederal party \"soft money\" accounts (1991-2002)\n         from a person (individual, partnership, limited liability company,\n         corporation, labor organization, or any other organization or\n         group of persons)\n    - 15 Contribution to political committees (other than Super PACs\n         and Hybrid PACs) from an individual, partnership or\n         limited liability company\n    - 15E Earmarked contributions to political committees\n          (other than Super PACs and Hybrid PACs) from an individual,\n          partnership or limited liability company\n    - 15J Memo - Recipient committee's percentage of contribution\n          from an individual, partnership or limited liability\n          company given to joint fundraising committee\n    - 18J | Memo - Recipient committee's percentage of contribution\n          from a registered committee given to joint fundraising committee\n    - 30, 30T, 31, 31T, 32 Individual party codes\n\nFor receipts under $200:\nWe check the following codes and see if there is \"earmark\" (or a variation) in the `memo_text`\ndescription of the contribution.\n\nLine number with description\n    -11AI The itemized individual contributions from F3 schedule A\n    -12 Nonfederal other receipt - Levin Account (Line 2)\n    -17 Itemized individual contributions from Form 3P\n    -17A Itemized individual contributions from Form 3P\n    -18 Itemized individual contributions from Form 3P\n\nOf those transactions,[under $200, and having \"earmark\" in the memo text OR transactions having the codes 11A, 12, 17, 17A, or 18], we then want to exclude earmarks.\n\n\nAll receipt data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results\nwill default to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule A filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `contribution_receipt_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 2152643,\n    per_page: 20,\n    count: 43052850,\n    last_indexes: {\n        last_index: \"230880619\",\n        last_contribution_receipt_date: \"2014-01-01\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230880619` and\n`last_contribution_receipt_date=2014-01-01` to the URL.  We strongly advise paging through\nthese results by using sort indices (defaults to sort by contribution date), otherwise some resources may be\nunintentionally filtered out.  This resource uses keyset pagination to improve query performance and these indices\nare required to properly page through this large dataset.\n\nNote: because the Schedule A data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nSchedule A records describe itemized receipts reported by a committee. This is where\nyou can look for individual contributors. If you are interested in\nindividual donors, `/schedules/schedule_a` will be the endpoint you use.\n\nOnce a person gives more than a total of $200, the donations of that person must be\nreported by committees that file F3, F3X and F3P forms.\n\nContributions $200 and under are not required to be itemized, but you can find the total\namount of these small donations by looking up the \"unitemized\" field in the `/reports`\nor `/totals` endpoints.\n\nWhen comparing the totals from reports to line items. the totals will not match unless you\nonly look at items where `\"is_individual\":true` since the same transaction is in the data\nmultiple ways to explain the way it may move though different committees as an earmark.\nSee the `is_individual` sql function within the migrations for more details.\n\nFor the Schedule A aggregates, such as by_occupation and by_state, include only unique individual\ncontributions. See below for full methodology.\n\n__Methodology for determining unique, individual contributions__\n\nFor receipts over $200 use FEC code line_number to identify individuals.\n\nThe line numbers that specify individuals that are automatically included:\n\nLine number with description\n    - 10 Contribution to Independent Expenditure-Only Committees (Super PACs),\n         Political Committees with non-contribution accounts (Hybrid PACs)\n         and nonfederal party \"soft money\" accounts (1991-2002)\n         from a person (individual, partnership, limited liability company,\n         corporation, labor organization, or any other organization or\n         group of persons)\n    - 15 Contribution to political committees (other than Super PACs\n         and Hybrid PACs) from an individual, partnership or\n         limited liability company\n    - 15E Earmarked contributions to political committees\n          (other than Super PACs and Hybrid PACs) from an individual,\n          partnership or limited liability company\n    - 15J Memo - Recipient committee's percentage of contribution\n          from an individual, partnership or limited liability\n          company given to joint fundraising committee\n    - 18J | Memo - Recipient committee's percentage of contribution\n          from a registered committee given to joint fundraising committee\n    - 30, 30T, 31, 31T, 32 Individual party codes\n\nFor receipts under $200:\nWe check the following codes and see if there is \"earmark\" (or a variation) in the `memo_text`\ndescription of the contribution.\n\nLine number with description\n    -11AI The itemized individual contributions from F3 schedule A\n    -12 Nonfederal other receipt - Levin Account (Line 2)\n    -17 Itemized individual contributions from Form 3P\n    -17A Itemized individual contributions from Form 3P\n    -18 Itemized individual contributions from Form 3P\n\nOf those transactions,[under $200, and having \"earmark\" in the memo text OR transactions having the codes 11A, 12, 17, 17A, or 18], we then want to exclude earmarks.\n\n\nAll receipt data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results\nwill default to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule A filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `contribution_receipt_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 2152643,\n    per_page: 20,\n    count: 43052850,\n    last_indexes: {\n        last_index: \"230880619\",\n        last_contribution_receipt_date: \"2014-01-01\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230880619` and\n`last_contribution_receipt_date=2014-01-01` to the URL.  We strongly advise paging through\nthese results by using sort indices (defaults to sort by contribution date), otherwise some resources may be\nunintentionally filtered out.  This resource uses keyset pagination to improve query performance and these indices\nare required to properly page through this large dataset.\n\nNote: because the Schedule A data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_employer_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_employer_.js",
+            "title": "Schedule A receipts aggregated by contributor employer name. To avoid double counting, memoed items are not included.",
+            "description": "Schedule A receipts aggregated by contributor employer name. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_employer_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_occupation_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_occupation_.js",
+            "title": "Schedule A receipts aggregated by contributor occupation. To avoid double counting, memoed items are not included.",
+            "description": "Schedule A receipts aggregated by contributor occupation. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_occupation_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_size_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_size_.js",
+            "title": "\nThis endpoint aggregates Schedule A donations based on size:\n```\n - $200 and under\n - $200.01 - $499.99\n - $500 - $999.99\n - $1000 - $1999.99\n - $2000 +\n```\nIn cases where the donations are $200 or less, the results include small donations\nthat are reported on Schedule A, but filers are not required to itemize those small\ndonations, so we also add unitemized contributions. Unitemized contributions come\nfrom the summary section of the forms. It represents the total money brought in from\ndonors that are not reported on Schedule A and have given $200 or less.\n",
+            "description": "\nThis endpoint aggregates Schedule A donations based on size:\n```\n - $200 and under\n - $200.01 - $499.99\n - $500 - $999.99\n - $1000 - $1999.99\n - $2000 +\n```\nIn cases where the donations are $200 or less, the results include small donations\nthat are reported on Schedule A, but filers are not required to itemize those small\ndonations, so we also add unitemized contributions. Unitemized contributions come\nfrom the summary section of the forms. It represents the total money brought in from\ndonors that are not reported on Schedule A and have given $200 or less.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_size_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_size_by_candidate_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_size_by_candidate_.js",
+            "title": "\nSchedule A receipts aggregated by contribution size for a candidate.\n",
+            "description": "\nSchedule A receipts aggregated by contribution size for a candidate.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_size_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_state_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_state_.js",
+            "title": "\nSchedule A individual receipts aggregated by contributor state.\nThis is an aggregate of only individual contributions. To avoid double counting,\nmemoed items are not included. Transactions $200 and under do not have to be\nitemized, if those contributions are not itemized, they will not be included in the\nstate totals.\n",
+            "description": "\nSchedule A individual receipts aggregated by contributor state.\nThis is an aggregate of only individual contributions. To avoid double counting,\nmemoed items are not included. Transactions $200 and under do not have to be\nitemized, if those contributions are not itemized, they will not be included in the\nstate totals.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_state_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_state_by_candidate_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_state_by_candidate_.js",
+            "title": "\nSchedule A receipts aggregated by contribution state for a candidate.\n",
+            "description": "\nSchedule A receipts aggregated by contribution state for a candidate.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_state_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_state_totals_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_state_totals_.js",
+            "title": "\nSchedule A individual receipts aggregated by contributor state.\nThis is an aggregate of only individual contributions. To avoid double counting,\nmemoed items are not included. Transactions $200 and under do not have to be\nitemized, if those contributions are not itemized, they will not be included in the\nstate totals.\n\nThese receipts are then added together by committee type for the total amount\nof each type, grouped by state and cycle.\n",
+            "description": "\nSchedule A individual receipts aggregated by contributor state.\nThis is an aggregate of only individual contributions. To avoid double counting,\nmemoed items are not included. Transactions $200 and under do not have to be\nitemized, if those contributions are not itemized, they will not be included in the\nstate totals.\n\nThese receipts are then added together by committee type for the total amount\nof each type, grouped by state and cycle.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_state_totals_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_by_zip_": {
+            "main": "./lib/actions/get_schedules_schedule_a_by_zip_.js",
+            "title": "Schedule A receipts aggregated by contributor zip code. To avoid double counting, memoed items are not included.",
+            "description": "Schedule A receipts aggregated by contributor zip code. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_by_zip_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a_efile_": {
+            "main": "./lib/actions/get_schedules_schedule_a_efile_.js",
+            "title": "\nEfiling endpoints provide real-time campaign finance data for electronic filers.\n\nThese endpoints are perfect for watching filings roll in when you want to know the latest information. Efiling endpoints\nonly contain the most recent two years worth of data and don't contain the processed and coded data that\nyou can find on the other endpoints. Those endpoints are better for in-depth analysis.\n\nSenate candidates and committees are required to file by paper. Other committees who raise and spend less than $50,000\nin a calendar can choose whether to file electronically or by paper.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nEfiling endpoints provide real-time campaign finance data for electronic filers.\n\nThese endpoints are perfect for watching filings roll in when you want to know the latest information. Efiling endpoints\nonly contain the most recent two years worth of data and don't contain the processed and coded data that\nyou can find on the other endpoints. Those endpoints are better for in-depth analysis.\n\nSenate candidates and committees are required to file by paper. Other committees who raise and spend less than $50,000\nin a calendar can choose whether to file electronically or by paper.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a_efile_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_a__sub_id__": {
+            "main": "./lib/actions/get_schedules_schedule_a__sub_id__.js",
+            "title": "\nSchedule A records describe itemized receipts reported by a committee. This is where\nyou can look for individual contributors. If you are interested in\nindividual donors, `/schedules/schedule_a` will be the endpoint you use.\n\nOnce a person gives more than a total of $200, the donations of that person must be\nreported by committees that file F3, F3X and F3P forms.\n\nContributions $200 and under are not required to be itemized, but you can find the total\namount of these small donations by looking up the \"unitemized\" field in the `/reports`\nor `/totals` endpoints.\n\nWhen comparing the totals from reports to line items. the totals will not match unless you\nonly look at items where `\"is_individual\":true` since the same transaction is in the data\nmultiple ways to explain the way it may move though different committees as an earmark.\nSee the `is_individual` sql function within the migrations for more details.\n\nFor the Schedule A aggregates, such as by_occupation and by_state, include only unique individual\ncontributions. See below for full methodology.\n\n__Methodology for determining unique, individual contributions__\n\nFor receipts over $200 use FEC code line_number to identify individuals.\n\nThe line numbers that specify individuals that are automatically included:\n\nLine number with description\n    - 10 Contribution to Independent Expenditure-Only Committees (Super PACs),\n         Political Committees with non-contribution accounts (Hybrid PACs)\n         and nonfederal party \"soft money\" accounts (1991-2002)\n         from a person (individual, partnership, limited liability company,\n         corporation, labor organization, or any other organization or\n         group of persons)\n    - 15 Contribution to political committees (other than Super PACs\n         and Hybrid PACs) from an individual, partnership or\n         limited liability company\n    - 15E Earmarked contributions to political committees\n          (other than Super PACs and Hybrid PACs) from an individual,\n          partnership or limited liability company\n    - 15J Memo - Recipient committee's percentage of contribution\n          from an individual, partnership or limited liability\n          company given to joint fundraising committee\n    - 18J | Memo - Recipient committee's percentage of contribution\n          from a registered committee given to joint fundraising committee\n    - 30, 30T, 31, 31T, 32 Individual party codes\n\nFor receipts under $200:\nWe check the following codes and see if there is \"earmark\" (or a variation) in the `memo_text`\ndescription of the contribution.\n\nLine number with description\n    -11AI The itemized individual contributions from F3 schedule A\n    -12 Nonfederal other receipt - Levin Account (Line 2)\n    -17 Itemized individual contributions from Form 3P\n    -17A Itemized individual contributions from Form 3P\n    -18 Itemized individual contributions from Form 3P\n\nOf those transactions,[under $200, and having \"earmark\" in the memo text OR transactions having the codes 11A, 12, 17, 17A, or 18], we then want to exclude earmarks.\n\n\nAll receipt data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results\nwill default to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule A filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `contribution_receipt_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 2152643,\n    per_page: 20,\n    count: 43052850,\n    last_indexes: {\n        last_index: \"230880619\",\n        last_contribution_receipt_date: \"2014-01-01\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230880619` and\n`last_contribution_receipt_date=2014-01-01` to the URL.  We strongly advise paging through\nthese results by using sort indices (defaults to sort by contribution date), otherwise some resources may be\nunintentionally filtered out.  This resource uses keyset pagination to improve query performance and these indices\nare required to properly page through this large dataset.\n\nNote: because the Schedule A data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nSchedule A records describe itemized receipts reported by a committee. This is where\nyou can look for individual contributors. If you are interested in\nindividual donors, `/schedules/schedule_a` will be the endpoint you use.\n\nOnce a person gives more than a total of $200, the donations of that person must be\nreported by committees that file F3, F3X and F3P forms.\n\nContributions $200 and under are not required to be itemized, but you can find the total\namount of these small donations by looking up the \"unitemized\" field in the `/reports`\nor `/totals` endpoints.\n\nWhen comparing the totals from reports to line items. the totals will not match unless you\nonly look at items where `\"is_individual\":true` since the same transaction is in the data\nmultiple ways to explain the way it may move though different committees as an earmark.\nSee the `is_individual` sql function within the migrations for more details.\n\nFor the Schedule A aggregates, such as by_occupation and by_state, include only unique individual\ncontributions. See below for full methodology.\n\n__Methodology for determining unique, individual contributions__\n\nFor receipts over $200 use FEC code line_number to identify individuals.\n\nThe line numbers that specify individuals that are automatically included:\n\nLine number with description\n    - 10 Contribution to Independent Expenditure-Only Committees (Super PACs),\n         Political Committees with non-contribution accounts (Hybrid PACs)\n         and nonfederal party \"soft money\" accounts (1991-2002)\n         from a person (individual, partnership, limited liability company,\n         corporation, labor organization, or any other organization or\n         group of persons)\n    - 15 Contribution to political committees (other than Super PACs\n         and Hybrid PACs) from an individual, partnership or\n         limited liability company\n    - 15E Earmarked contributions to political committees\n          (other than Super PACs and Hybrid PACs) from an individual,\n          partnership or limited liability company\n    - 15J Memo - Recipient committee's percentage of contribution\n          from an individual, partnership or limited liability\n          company given to joint fundraising committee\n    - 18J | Memo - Recipient committee's percentage of contribution\n          from a registered committee given to joint fundraising committee\n    - 30, 30T, 31, 31T, 32 Individual party codes\n\nFor receipts under $200:\nWe check the following codes and see if there is \"earmark\" (or a variation) in the `memo_text`\ndescription of the contribution.\n\nLine number with description\n    -11AI The itemized individual contributions from F3 schedule A\n    -12 Nonfederal other receipt - Levin Account (Line 2)\n    -17 Itemized individual contributions from Form 3P\n    -17A Itemized individual contributions from Form 3P\n    -18 Itemized individual contributions from Form 3P\n\nOf those transactions,[under $200, and having \"earmark\" in the memo text OR transactions having the codes 11A, 12, 17, 17A, or 18], we then want to exclude earmarks.\n\n\nAll receipt data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results\nwill default to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule A filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `contribution_receipt_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 2152643,\n    per_page: 20,\n    count: 43052850,\n    last_indexes: {\n        last_index: \"230880619\",\n        last_contribution_receipt_date: \"2014-01-01\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230880619` and\n`last_contribution_receipt_date=2014-01-01` to the URL.  We strongly advise paging through\nthese results by using sort indices (defaults to sort by contribution date), otherwise some resources may be\nunintentionally filtered out.  This resource uses keyset pagination to improve query performance and these indices\nare required to properly page through this large dataset.\n\nNote: because the Schedule A data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_a__sub_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_b_": {
+            "main": "./lib/actions/get_schedules_schedule_b_.js",
+            "title": "\nSchedule B filings describe itemized disbursements. This data\nexplains how committees and other filers spend their money. These figures are\nreported as part of forms F3, F3X and F3P.\n\nThe data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results will\ndefault to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule B filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `disbursement_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 965191,\n    per_page: 20,\n    count: 19303814,\n    last_indexes: {\n        last_index: \"230906248\",\n        last_disbursement_date: \"2014-07-04\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230906248` and\n`last_disbursement_date=2014-07-04` to the URL.  We strongly advise paging through\nthese results by using the sort indices (defaults to sort by disbursement date, e.g. `last_disbursement_date`), otherwise\nsome resources may be unintentionally filtered out.  This resource uses keyset pagination to improve query performance\nand these indices are required to properly page through this large dataset.\n\nNote: because the Schedule B data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nSchedule B filings describe itemized disbursements. This data\nexplains how committees and other filers spend their money. These figures are\nreported as part of forms F3, F3X and F3P.\n\nThe data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results will\ndefault to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule B filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `disbursement_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 965191,\n    per_page: 20,\n    count: 19303814,\n    last_indexes: {\n        last_index: \"230906248\",\n        last_disbursement_date: \"2014-07-04\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230906248` and\n`last_disbursement_date=2014-07-04` to the URL.  We strongly advise paging through\nthese results by using the sort indices (defaults to sort by disbursement date, e.g. `last_disbursement_date`), otherwise\nsome resources may be unintentionally filtered out.  This resource uses keyset pagination to improve query performance\nand these indices are required to properly page through this large dataset.\n\nNote: because the Schedule B data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_b_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_b_by_purpose_": {
+            "main": "./lib/actions/get_schedules_schedule_b_by_purpose_.js",
+            "title": "\nSchedule B disbursements aggregated by disbursement purpose category. To avoid double counting,\nmemoed items are not included.\nPurpose is a combination of transaction codes, category codes and disbursement description.\nSee the `disbursement_purpose` sql function within the migrations for more details.\n",
+            "description": "\nSchedule B disbursements aggregated by disbursement purpose category. To avoid double counting,\nmemoed items are not included.\nPurpose is a combination of transaction codes, category codes and disbursement description.\nSee the `disbursement_purpose` sql function within the migrations for more details.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_b_by_purpose_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_b_by_recipient_": {
+            "main": "./lib/actions/get_schedules_schedule_b_by_recipient_.js",
+            "title": "\nSchedule B disbursements aggregated by recipient name. To avoid double counting,\nmemoed items are not included.\n",
+            "description": "\nSchedule B disbursements aggregated by recipient name. To avoid double counting,\nmemoed items are not included.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_b_by_recipient_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_b_by_recipient_id_": {
+            "main": "./lib/actions/get_schedules_schedule_b_by_recipient_id_.js",
+            "title": "\nSchedule B disbursements aggregated by recipient committee ID, if applicable.\nTo avoid double counting, memoed items are not included.\n",
+            "description": "\nSchedule B disbursements aggregated by recipient committee ID, if applicable.\nTo avoid double counting, memoed items are not included.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_b_by_recipient_id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_b_efile_": {
+            "main": "./lib/actions/get_schedules_schedule_b_efile_.js",
+            "title": "\nEfiling endpoints provide real-time campaign finance data for electronic filers.\n\nThese endpoints are perfect for watching filings roll in when you want to know the latest information. Efiling endpoints\nonly contain the most recent two years worth of data and don't contain the processed and coded data that\nyou can find on the other endpoints. Those endpoints are better for in-depth analysis.\n\nSenate candidates and committees are required to file by paper. Other committees who raise and spend less than $50,000\nin a calendar can choose whether to file electronically or by paper.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nEfiling endpoints provide real-time campaign finance data for electronic filers.\n\nThese endpoints are perfect for watching filings roll in when you want to know the latest information. Efiling endpoints\nonly contain the most recent two years worth of data and don't contain the processed and coded data that\nyou can find on the other endpoints. Those endpoints are better for in-depth analysis.\n\nSenate candidates and committees are required to file by paper. Other committees who raise and spend less than $50,000\nin a calendar can choose whether to file electronically or by paper.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_b_efile_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_b__sub_id__": {
+            "main": "./lib/actions/get_schedules_schedule_b__sub_id__.js",
+            "title": "\nSchedule B filings describe itemized disbursements. This data\nexplains how committees and other filers spend their money. These figures are\nreported as part of forms F3, F3X and F3P.\n\nThe data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results will\ndefault to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule B filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `disbursement_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 965191,\n    per_page: 20,\n    count: 19303814,\n    last_indexes: {\n        last_index: \"230906248\",\n        last_disbursement_date: \"2014-07-04\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230906248` and\n`last_disbursement_date=2014-07-04` to the URL.  We strongly advise paging through\nthese results by using the sort indices (defaults to sort by disbursement date, e.g. `last_disbursement_date`), otherwise\nsome resources may be unintentionally filtered out.  This resource uses keyset pagination to improve query performance\nand these indices are required to properly page through this large dataset.\n\nNote: because the Schedule B data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nSchedule B filings describe itemized disbursements. This data\nexplains how committees and other filers spend their money. These figures are\nreported as part of forms F3, F3X and F3P.\n\nThe data is divided in two-year periods, called `two_year_transaction_period`, which\nis derived from the `report_year` submitted of the corresponding form. If no value is supplied, the results will\ndefault to the most recent two-year period that is named after the ending,\neven-numbered year.\n\nDue to the large quantity of Schedule B filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `disbursement_date`, you might receive a page of\nresults with the following pagination information:\n\n```\npagination: {\n    pages: 965191,\n    per_page: 20,\n    count: 19303814,\n    last_indexes: {\n        last_index: \"230906248\",\n        last_disbursement_date: \"2014-07-04\"\n    }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=230906248` and\n`last_disbursement_date=2014-07-04` to the URL.  We strongly advise paging through\nthese results by using the sort indices (defaults to sort by disbursement date, e.g. `last_disbursement_date`), otherwise\nsome resources may be unintentionally filtered out.  This resource uses keyset pagination to improve query performance\nand these indices are required to properly page through this large dataset.\n\nNote: because the Schedule B data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_b__sub_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_c_": {
+            "main": "./lib/actions/get_schedules_schedule_c_.js",
+            "title": "\nSchedule C shows all loans, endorsements and loan guarantees a committee\nreceives or makes.\n\nThe committee continues to report the loan until it is repaid.\n",
+            "description": "\nSchedule C shows all loans, endorsements and loan guarantees a committee\nreceives or makes.\n\nThe committee continues to report the loan until it is repaid.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_c_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_c__sub_id__": {
+            "main": "./lib/actions/get_schedules_schedule_c__sub_id__.js",
+            "title": "\nSchedule C shows all loans, endorsements and loan guarantees a committee\nreceives or makes.\n\nThe committee continues to report the loan until it is repaid.\n",
+            "description": "\nSchedule C shows all loans, endorsements and loan guarantees a committee\nreceives or makes.\n\nThe committee continues to report the loan until it is repaid.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_c__sub_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_d_": {
+            "main": "./lib/actions/get_schedules_schedule_d_.js",
+            "title": "\nSchedule D, it shows debts and obligations owed to or by the committee that are\nrequired to be disclosed.\n\n\n",
+            "description": "\nSchedule D, it shows debts and obligations owed to or by the committee that are\nrequired to be disclosed.\n\n\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_d_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_d__sub_id__": {
+            "main": "./lib/actions/get_schedules_schedule_d__sub_id__.js",
+            "title": "\nSchedule D, it shows debts and obligations owed to or by the committee that are\nrequired to be disclosed.\n\n\n",
+            "description": "\nSchedule D, it shows debts and obligations owed to or by the committee that are\nrequired to be disclosed.\n\n\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_d__sub_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_e_": {
+            "main": "./lib/actions/get_schedules_schedule_e_.js",
+            "title": "\nSchedule E covers the line item expenditures for independent expenditures. For example, if a super PAC\nbought ads on TV to oppose a federal candidate, each ad purchase would be recorded here with\nthe expenditure amount, name and id of the candidate, and whether the ad supported or opposed the candidate.\n\nAn independent expenditure is an expenditure for a communication \"expressly advocating the election or\ndefeat of a clearly identified candidate that is not made in cooperation, consultation, or concert with,\nor at the request or suggestion of, a candidate, a candidate's authorized committee, or their agents, or\na political party or its agents.\"\n\nAggregates by candidate do not include 24 and 48 hour reports. This ensures we don't double count expenditures\nand the totals are more accurate. You can still find the information from 24 and 48 hour reports in\n`/schedule/schedule_e/`.\n\nDue to the large quantity of Schedule E filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `expenditure_amount`, you might receive a page of\nresults with the following pagination information:\n\n```\n \"pagination\": {\n    \"count\": 152623,\n    \"last_indexes\": {\n      \"last_index\": \"3023037\",\n      \"last_expenditure_amount\": -17348.5\n    },\n    \"per_page\": 20,\n    \"pages\": 7632\n  }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=3023037` and\n`last_expenditure_amount=` to the URL.  We strongly advise paging through\nthese results by using the sort indices (defaults to sort by disbursement date, e.g. `last_disbursement_date`), otherwise\nsome resources may be unintentionally filtered out.  This resource uses keyset pagination to improve query performance\nand these indices are required to properly page through this large dataset.\n\nNote: because the Schedule E data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "description": "\nSchedule E covers the line item expenditures for independent expenditures. For example, if a super PAC\nbought ads on TV to oppose a federal candidate, each ad purchase would be recorded here with\nthe expenditure amount, name and id of the candidate, and whether the ad supported or opposed the candidate.\n\nAn independent expenditure is an expenditure for a communication \"expressly advocating the election or\ndefeat of a clearly identified candidate that is not made in cooperation, consultation, or concert with,\nor at the request or suggestion of, a candidate, a candidate's authorized committee, or their agents, or\na political party or its agents.\"\n\nAggregates by candidate do not include 24 and 48 hour reports. This ensures we don't double count expenditures\nand the totals are more accurate. You can still find the information from 24 and 48 hour reports in\n`/schedule/schedule_e/`.\n\nDue to the large quantity of Schedule E filings, this endpoint is not paginated by\npage number. Instead, you can request the next page of results by adding the values in\nthe `last_indexes` object from `pagination` to the URL of your last request. For\nexample, when sorting by `expenditure_amount`, you might receive a page of\nresults with the following pagination information:\n\n```\n \"pagination\": {\n    \"count\": 152623,\n    \"last_indexes\": {\n      \"last_index\": \"3023037\",\n      \"last_expenditure_amount\": -17348.5\n    },\n    \"per_page\": 20,\n    \"pages\": 7632\n  }\n}\n```\n\nTo fetch the next page of sorted results, append `last_index=3023037` and\n`last_expenditure_amount=` to the URL.  We strongly advise paging through\nthese results by using the sort indices (defaults to sort by disbursement date, e.g. `last_disbursement_date`), otherwise\nsome resources may be unintentionally filtered out.  This resource uses keyset pagination to improve query performance\nand these indices are required to properly page through this large dataset.\n\nNote: because the Schedule E data includes many records, counts for\nlarge result sets are approximate; you will want to page through the records until no records are returned.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_e_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_e_by_candidate_": {
+            "main": "./lib/actions/get_schedules_schedule_e_by_candidate_.js",
+            "title": "Schedule E receipts aggregated by recipient candidate. To avoid double counting, memoed items are not included.",
+            "description": "Schedule E receipts aggregated by recipient candidate. To avoid double counting, memoed items are not included.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_e_by_candidate_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_e_efile_": {
+            "main": "./lib/actions/get_schedules_schedule_e_efile_.js",
+            "title": "\nEfiling endpoints provide real-time campaign finance data for electronic filers.\n\nThese endpoints are perfect for watching filings roll in when you want to know the latest information. Efiling endpoints\nonly contain the most recent two years worth of data and don't contain the processed and coded data that\nyou can find on the other endpoints. Those endpoints are better for in-depth analysis.\n\nSenate candidates and committees are required to file by paper. Other committees who raise and spend less than $50,000\nin a calendar can choose whether to file electronically or by paper.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "description": "\nEfiling endpoints provide real-time campaign finance data for electronic filers.\n\nThese endpoints are perfect for watching filings roll in when you want to know the latest information. Efiling endpoints\nonly contain the most recent two years worth of data and don't contain the processed and coded data that\nyou can find on the other endpoints. Those endpoints are better for in-depth analysis.\n\nSenate candidates and committees are required to file by paper. Other committees who raise and spend less than $50,000\nin a calendar can choose whether to file electronically or by paper.\n\nDISCLAIMER: The field labels contained within this resource are subject to change.  We are attempting to succinctly\nlabel these fields while conveying clear meaning to ensure accessibility for all users.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_e_efile_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_f_": {
+            "main": "./lib/actions/get_schedules_schedule_f_.js",
+            "title": "\nSchedule F, it shows all special expenditures a national or state party committee\nmakes in connection with the general election campaigns of federal candidates.\n\nThese coordinated party expenditures do not count against the contribution limits but are subject to other limits,\nthese limits are detailed in Chapter 7 of the FEC Campaign Guide for Political Party Committees.\n",
+            "description": "\nSchedule F, it shows all special expenditures a national or state party committee\nmakes in connection with the general election campaigns of federal candidates.\n\nThese coordinated party expenditures do not count against the contribution limits but are subject to other limits,\nthese limits are detailed in Chapter 7 of the FEC Campaign Guide for Political Party Committees.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_f_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_schedules_schedule_f__sub_id__": {
+            "main": "./lib/actions/get_schedules_schedule_f__sub_id__.js",
+            "title": "\nSchedule F, it shows all special expenditures a national or state party committee\nmakes in connection with the general election campaigns of federal candidates.\n\nThese coordinated party expenditures do not count against the contribution limits but are subject to other limits,\nthese limits are detailed in Chapter 7 of the FEC Campaign Guide for Political Party Committees.\n",
+            "description": "\nSchedule F, it shows all special expenditures a national or state party committee\nmakes in connection with the general election campaigns of federal candidates.\n\nThese coordinated party expenditures do not count against the contribution limits but are subject to other limits,\nthese limits are detailed in Chapter 7 of the FEC Campaign Guide for Political Party Committees.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_schedules_schedule_f__sub_id__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_state_election_office_": {
+            "main": "./lib/actions/get_state_election_office_.js",
+            "title": "\nState laws and procedures govern elections for state or local offices as well as\nhow candidates appear on election ballots.\nContact the appropriate state election office for more information.\n",
+            "description": "\nState laws and procedures govern elections for state or local offices as well as\nhow candidates appear on election ballots.\nContact the appropriate state election office for more information.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_state_election_office_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_totals_by_entity_": {
+            "main": "./lib/actions/get_totals_by_entity_.js",
+            "title": "\nProvides cumulative receipt totals by entity type, over a two year cycle. Totals are adjusted to avoid double counting.\n\nThis is [the sql](https://github.com/fecgov/openFEC/blob/develop/data/migrations/V41__large_aggregates.sql) that creates these calculations.\n",
+            "description": "\nProvides cumulative receipt totals by entity type, over a two year cycle. Totals are adjusted to avoid double counting.\n\nThis is [the sql](https://github.com/fecgov/openFEC/blob/develop/data/migrations/V41__large_aggregates.sql) that creates these calculations.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_totals_by_entity_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_totals__committee_type__": {
+            "main": "./lib/actions/get_totals__committee_type__.js",
+            "title": "\nThis endpoint provides information about a committee's Form 3, Form 3X, or Form 3P financial reports,\nwhich are aggregated by two-year period. We refer to two-year periods as a `cycle`.\n\nThe cycle is named after the even-numbered year and includes the year before it. To see\ntotals from 2013 and 2014, you would use 2014. In odd-numbered years, the current cycle\nis the next year -- for example, in 2015, the current cycle is 2016.\n\nFor presidential and Senate candidates, multiple two-year cycles exist between elections.\n",
+            "description": "\nThis endpoint provides information about a committee's Form 3, Form 3X, or Form 3P financial reports,\nwhich are aggregated by two-year period. We refer to two-year periods as a `cycle`.\n\nThe cycle is named after the even-numbered year and includes the year before it. To see\ntotals from 2013 and 2014, you would use 2014. In odd-numbered years, the current cycle\nis the next year -- for example, in 2015, the current cycle is 2016.\n\nFor presidential and Senate candidates, multiple two-year cycles exist between elections.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_totals__committee_type__.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

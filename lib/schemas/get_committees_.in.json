@@ -1,0 +1,196 @@
+{
+    "type": "object",
+    "properties": {
+        "min_last_f1_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "party": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "q": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "committee_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "cycle": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "state": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "max_first_file_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "filing_frequency": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "A",
+                    "M",
+                    "N",
+                    "Q",
+                    "T",
+                    "W",
+                    "-A",
+                    "-T"
+                ],
+                "type": "string"
+            }
+        },
+        "organization_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "C",
+                    "L",
+                    "M",
+                    "T",
+                    "V",
+                    "W"
+                ],
+                "type": "string"
+            }
+        },
+        "committee_type": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "C",
+                    "D",
+                    "E",
+                    "H",
+                    "I",
+                    "N",
+                    "O",
+                    "P",
+                    "Q",
+                    "S",
+                    "U",
+                    "V",
+                    "W",
+                    "X",
+                    "Y",
+                    "Z"
+                ],
+                "type": "string"
+            }
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "designation": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "",
+                    "A",
+                    "J",
+                    "P",
+                    "U",
+                    "B",
+                    "D"
+                ],
+                "type": "string"
+            }
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "candidate_id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "treasurer_name": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "min_first_file_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "max_last_f1_date": {
+            "required": false,
+            "type": "string",
+            "format": "date"
+        },
+        "sort": {
+            "required": false,
+            "type": "string",
+            "default": "name"
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "year": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "q": {
+            "required": true,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

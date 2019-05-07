@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "sub_id": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

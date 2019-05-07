@@ -1,0 +1,64 @@
+{
+    "type": "object",
+    "properties": {
+        "office": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "",
+                "H",
+                "S",
+                "P"
+            ]
+        },
+        "election_year": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int32",
+                "type": "integer"
+            }
+        },
+        "per_page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+        },
+        "sort_hide_null": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "active_candidates": {
+            "required": false,
+            "type": "boolean",
+            "default": true
+        },
+        "api_key": {
+            "required": true,
+            "type": "string",
+            "default": "DEMO_KEY"
+        },
+        "sort_nulls_last": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "sort_null_only": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
